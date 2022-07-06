@@ -64,10 +64,17 @@ form button {
 }
 
 .notas {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
-.images-notas {
+.notas .msg {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.imagens-notas {
+    margin-top: 20px;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;

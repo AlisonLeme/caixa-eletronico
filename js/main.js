@@ -10,6 +10,7 @@ const Main = {
     this.form = document.querySelector("#form");
     this.notas = document.querySelector(".notas");
     this.divNotas = document.querySelector(".imagens-notas");
+    this.msg = document.querySelector(".msg")
   },
 
   bindEvents: function () {
@@ -21,6 +22,7 @@ const Main = {
       let lastNumber = saque.substr(-1);
 
       if (lastNumber != 3 && lastNumber != 1) {
+        self.msg.innerHTML = "Saque realizado com sucesso!"
         for (let i = 0; i < self.listaNotas.length; i++) {
           let resto = saque - self.listaNotas[i];
           if (saque >= self.listaNotas[i] && resto != 3 && resto != 1) {
