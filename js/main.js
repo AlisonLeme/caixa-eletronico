@@ -10,7 +10,7 @@ const Main = {
     this.form = document.querySelector("#form");
     this.notas = document.querySelector(".notas");
     this.divNotas = document.querySelector(".imagens-notas");
-    this.msg = document.querySelector(".msg")
+    this.msg = document.querySelector(".msg");
   },
 
   bindEvents: function () {
@@ -18,22 +18,31 @@ const Main = {
     this.form.onsubmit = function (e) {
       e.preventDefault();
 
-      let saque = document.forms["form"].saque.value;
-      let lastNumber = saque.substr(-1);
+      self.divNotas.innerHTML = "<h4></h4>";
+      self.msg.innerHTML = "";
 
-      if (lastNumber != 3 && lastNumber != 1) {
-        self.msg.innerHTML = "Saque realizado com sucesso!"
+      let saque = document.forms["form"].saque;
+      let lastNumber = saque.value.substr(-1);
+
+      if (
+        lastNumber != 3 &&
+        lastNumber != 1 &&
+        saque.value != "" &&
+        saque.value != 0
+      ) {
+        self.msg.innerHTML = "Saque realizado com sucesso!";
         for (let i = 0; i < self.listaNotas.length; i++) {
-          let resto = saque - self.listaNotas[i];
-          if (saque >= self.listaNotas[i] && resto != 3 && resto != 1) {
-            saque = saque - self.listaNotas[i];
+          let resto = saque.value - self.listaNotas[i];
+          if (saque.value >= self.listaNotas[i] && resto != 3 && resto != 1) {
+            saque.value = saque.value - self.listaNotas[i];
             self.divNotas.innerHTML += `<img src="images/${self.listaNotas[i]}.jpg" alt="">`;
             i = i - 1;
           }
         }
       } else {
-        self.divNotas.innerHTML = "<h4>Valor não pemitido</h4>";
+        self.msg.innerHTML = "Valor não permitido";
       }
+      saque.value = "";
     };
   },
 };
