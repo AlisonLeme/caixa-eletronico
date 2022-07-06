@@ -24,24 +24,24 @@ const Main = {
       let saque = document.forms["form"].saque;
       let lastNumber = saque.value.substr(-1);
 
-      if (
-        lastNumber != 3 &&
-        lastNumber != 1 &&
-        saque.value != "" &&
-        saque.value != 0
-      ) {
-        self.msg.innerHTML = "Saque realizado com sucesso!";
-        for (let i = 0; i < self.listaNotas.length; i++) {
-          let resto = saque.value - self.listaNotas[i];
-          if (saque.value >= self.listaNotas[i] && resto != 3 && resto != 1) {
-            saque.value = saque.value - self.listaNotas[i];
-            self.divNotas.innerHTML += `<img src="images/${self.listaNotas[i]}.jpg" alt="">`;
-            i = i - 1;
-          }
-        }
+      if (saque.value == "") {
+        self.msg.innerHTML = "Digite um valor";
       } else {
-        self.msg.innerHTML = "Valor não permitido";
+        if (lastNumber != 3 && lastNumber != 1 && saque.value > 0) {
+          self.msg.innerHTML = "Saque realizado com sucesso!";
+          for (let i = 0; i < self.listaNotas.length; i++) {
+            let resto = saque.value - self.listaNotas[i];
+            if (saque.value >= self.listaNotas[i] && resto != 3 && resto != 1) {
+              saque.value = saque.value - self.listaNotas[i];
+              self.divNotas.innerHTML += `<img src="images/${self.listaNotas[i]}.jpg" alt="">`;
+              i = i - 1;
+            }
+          }
+        } else {
+          self.msg.innerHTML = "Valor não permitido";
+        }
       }
+
       saque.value = "";
     };
   },
